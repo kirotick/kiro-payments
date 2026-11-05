@@ -1,0 +1,5 @@
+# Code owners: their review is requested automatically on changes to these paths.
+* @kirotick
+/service/node/src/ @kirotick
+/service/node/client/ @kirotick
+/.github/ @kirotick

@@ -1,0 +1,18 @@
+{
+  "name": "kiro-payments-service",
+  "version": "1.0.0",
+  "private": true,
+  "description": "KIRO PAY: PhonePe dynamic QR, verified webhooks, idempotent payment state. Live payments disabled until approved.",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test --test-concurrency=1 \"test/*.test.js\"",
+    "test:db": "node --env-file=.env.test --test --test-concurrency=1 \"test/*.test.js\"",
+    "migrate": "node scripts/migrate.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "express-rate-limit": "^7.5.0",
+    "pg": "^8.13.0"
+  }
+}

@@ -5,12 +5,12 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const path = require('path');
-const { enabled, pool, file, exec } = require('./pgpool');
+const { enabled, pool, file, exec, migration } = require('./pgpool');
 
 test('real Postgres: migration + store + handlers', { skip: !enabled }, async () => {
   await exec('DROP TABLE IF EXISTS phonepe_webhook_events, bills, merchant_payment_gateways CASCADE');
-  await file(path.join(__dirname, '../migrations/001_phonepe.sql'));
-  await file(path.join(__dirname, '../migrations/001_phonepe.sql')); // re-run is harmless
+  await file(migration('payments/001_phonepe.sql'));
+  await file(migration('payments/001_phonepe.sql')); // re-run is harmless
   const store = require('../src/store')(pool);
 
   await store.upsertGateway(1, 'MIDA', 'v1:aaa', '1');
